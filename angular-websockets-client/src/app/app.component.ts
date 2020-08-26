@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SocketClientService } from './service/socketClient.service';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'angular-websockets-client';
+
+  constructor(
+    private scs: SocketClientService
+  ) {
+    this.scs.onMessage('/topic/public/').subscribe(data => {
+      alert("socket")
+      debugger
+    });
+  }
 }
